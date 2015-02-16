@@ -129,7 +129,7 @@
                     <navigationItem key="navigationItem" id="3gE-qd-q95">
                         <barButtonItem key="leftBarButtonItem" title="Filters" id="Mu6-bv-OqJ">
                             <connections>
-                                <segue destination="ZSv-KD-Qnd" kind="modal" identifier="com.Yelp.FilterSegue" id="DOq-YK-HHb"/>
+                                <segue destination="ZSv-KD-Qnd" kind="modal" identifier="olgaa.FilterSegue" id="DOq-YK-HHb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -157,7 +157,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.Yelp.SwitchCell" id="DMN-B2-USo" customClass="SwitchCell" customModule="Yelp" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="olgaa.SwitchCell" id="DMN-B2-USo" customClass="SwitchCell" customModule="Yelp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DMN-B2-USo" id="xOK-fs-iNU">
@@ -185,11 +185,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="filterLabel" destination="fiT-lM-6DL" id="a1y-UC-iWz"/>
-                                            <outlet property="filterSwitch" destination="D2B-jP-Lcz" id="GlE-E2-xP9"/>
+                                            <outlet property="filterSwitch" destination="D2B-jP-Lcz" id="uol-eK-1rM"/>
+                                            <outlet property="switchLabel" destination="fiT-lM-6DL" id="6Up-dl-c3N"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.Yelp.ToggleCategories" id="Y6G-I8-trJ" customClass="ToggleSectionTableViewCell" customModule="Yelp" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="olgaa.ToggleCell" id="Y6G-I8-trJ" customClass="ToggleCategoriesCell" customModule="Yelp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y6G-I8-trJ" id="0nJ-EI-5Ku">
@@ -211,15 +211,21 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="toggleLabel" destination="RJm-wn-wia" id="N6n-fq-dHp"/>
+                                            <outlet property="toggleLabel" destination="RJm-wn-wia" id="YMn-8n-kcl"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.Yelp.DealCell" id="1i2-hm-AW2" customClass="DealTableViewCell" customModule="Yelp" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="olgaa.DealsCell" id="1i2-hm-AW2" customClass="DealsCell" customModule="Yelp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1i2-hm-AW2" id="xF8-by-zAx">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0J9-bf-QEg">
+                                                    <rect key="frame" x="263" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="dealToggled:" destination="1i2-hm-AW2" eventType="valueChanged" id="Kdd-6p-5nR"/>
+                                                    </connections>
+                                                </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offering a deal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEw-jV-ZK6">
                                                     <rect key="frame" x="8" y="11" width="113" height="21"/>
                                                     <constraints>
@@ -229,12 +235,6 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0J9-bf-QEg">
-                                                    <rect key="frame" x="263" y="6" width="51" height="31"/>
-                                                    <connections>
-                                                        <action selector="dealToggled:" destination="1i2-hm-AW2" eventType="valueChanged" id="Kdd-6p-5nR"/>
-                                                    </connections>
-                                                </switch>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerY" secondItem="AEw-jV-ZK6" secondAttribute="centerY" id="N7z-hG-WkK"/>
@@ -244,10 +244,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="dealSwitch" destination="0J9-bf-QEg" id="tBu-Us-Mdd"/>
+                                            <outlet property="dealSwitch" destination="0J9-bf-QEg" id="foh-Jb-f2T"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.Yelp.DistanceCell" id="N2b-lX-G3C" customClass="DistanceTableViewCell" customModule="Yelp" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="olgaa.DistanceCell" id="N2b-lX-G3C" customClass="DistanceCell" customModule="Yelp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N2b-lX-G3C" id="Rep-1G-4fu">
@@ -281,11 +281,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="distanceLabel" destination="Ql0-tm-eib" id="vAZ-9x-TlL"/>
-                                            <outlet property="distanceSlider" destination="hab-qV-WrQ" id="uI4-pY-RYS"/>
+                                            <outlet property="distanceLabel" destination="Ql0-tm-eib" id="6np-Ey-CYx"/>
+                                            <outlet property="distanceSlider" destination="hab-qV-WrQ" id="qfF-UL-9lQ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.Yelp.SortCell" id="sYY-5m-sgR" customClass="SortTableViewCell" customModule="Yelp" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="olgaa.SortCell" id="sYY-5m-sgR" customClass="SortCell" customModule="Yelp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sYY-5m-sgR" id="t3f-3A-VpF">
@@ -307,7 +307,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="sortLabel" destination="LX4-Ey-TBT" id="2PT-T5-qEs"/>
+                                            <outlet property="sortLabel" destination="LX4-Ey-TBT" id="pVV-fR-dpL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -323,7 +323,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Bf3-me-byf"/>
                     <connections>
-                        <outlet property="filtersTableView" destination="B21-E4-Uhg" id="bNM-Vd-ZQQ"/>
+                        <outlet property="tableView" destination="B21-E4-Uhg" id="Wpa-D1-q6w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8aj-DX-c4c" userLabel="First Responder" sceneMemberID="firstResponder"/>

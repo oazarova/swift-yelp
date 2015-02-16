@@ -9,7 +9,7 @@ import UIKit
 
 class Business : NSObject {
     
-    var imgUrl: String = ""
+    var imgUrl: String? = ""
     var name: String = ""
     var numReviews: Int = 0
     var address: String = ""
@@ -21,11 +21,12 @@ class Business : NSObject {
     required init(dictionary: NSDictionary){
         super.init()
         
-        self.imgUrl = dictionary["image_url"] as String
+        self.imgUrl = dictionary["image_url"] as? String
         self.name = dictionary["name"] as String
         self.numReviews = dictionary["review_count"] as Int
         
         var location = dictionary["location"] as NSDictionary
+        /*
         var addy = location["address"] as [String]
         var neighborhood = location["neighborhoods"] as [String]
         //var city = location["city"] as String
@@ -35,14 +36,21 @@ class Business : NSObject {
                 self.address += ", \(neighborhood[0])"
             }
         }
+        */
+        var display_address = location["display_address"] as [String]
+        if (display_address != []) {
+            self.address = "\(display_address[0])"
+        }
         
-        let categories = dictionary["categories"] as NSArray
-        for category in categories
-        {
-            if (self.type != "") {
-                self.type += ", "
+        
+        if let categories = dictionary["categories"] as? NSArray {
+            for category in categories
+            {
+                if (self.type != "") {
+                    self.type += ", "
+                }
+                self.type += category[0] as String
             }
-            self.type += category[0] as String
         }
 
         let milesPerMeter = 0.000621371 as Float

@@ -41,12 +41,18 @@ class BusinessCell : UITableViewCell {
     
     func setBusiness(business: Business) {
         self.business = business
-        self.imgView.setImageWithURL(NSURL(string: self.business.imgUrl))
+        if let imageUrl = self.business.imgUrl {
+            self.imgView.setImageWithURL(NSURL(string: self.business.imgUrl!))
+        } else {
+            imgView.image = UIImage(named: "Placeholder")
+        }
+
         self.nameLabel.text = self.business.name
         self.ratingView.setImageWithURL(NSURL(string: self.business.ratingUrl))
         self.ratingLabel.text = String(self.business.numReviews) + " Reviews"
         self.addressLabel.text = self.business.address
         self.distanceLabel.text = String(format: "%.2f mi", self.business.distance)
+        self.typeLabel.text = self.business.type
     }
     
     override func layoutSubviews() {
